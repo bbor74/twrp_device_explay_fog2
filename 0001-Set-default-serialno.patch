@@ -1,0 +1,26 @@
+From e9d737dd6aa09a87b396c0c6f17b0e23ac46779f Mon Sep 17 00:00:00 2001
+From: Boris Belyaev <bbor1974@gmail.com>
+Date: Tue, 28 Jan 2025 15:46:04 +0400
+Subject: [PATCH] Set default serialno
+
+Change-Id: I32729fb9f027a60c2720d12b37d25c279d9e401e
+---
+ init/init.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/init/init.c b/init/init.c
+index 1c7ba6b..21c397d 100644
+--- a/init/init.c
++++ b/init/init.c
+@@ -749,7 +749,7 @@ static void export_kernel_boot_props(void)
+         const char *dest_prop;
+         const char *def_val;
+     } prop_map[] = {
+-        { "ro.boot.serialno", "ro.serialno", "", },
++        { "ro.boot.serialno", "ro.serialno", "0123456789ABCDEF", },
+         { "ro.boot.mode", "ro.bootmode", "unknown", },
+         { "ro.boot.baseband", "ro.baseband", "unknown", },
+         { "ro.boot.bootloader", "ro.bootloader", "unknown", },
+-- 
+2.17.1
+

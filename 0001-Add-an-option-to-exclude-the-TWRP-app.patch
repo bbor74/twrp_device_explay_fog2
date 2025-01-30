@@ -1,0 +1,114 @@
+From ba803c4c551e616ad4163b0c2221644cb8498e24 Mon Sep 17 00:00:00 2001
+From: nailyk-fr <nailyk_git@nailyk.fr>
+Date: Tue, 8 Aug 2017 21:23:35 +0200
+Subject: [PATCH 1/2] Add an option to exclude the TWRP app
+
+ * Allow device maintainer to exclude the twrp app and disable
+   the installation prompt. Mostly the app is useless for
+   every unofficially supported devices.
+
+ * BoardConfig flag: 'TW_EXCLUDE_TWRPAPP := true'
+
+Change-Id: I830df65a57ae9d7e05a3e349cd8a9c630498e2d4
+---
+ Android.mk                     | 3 +++
+ data.cpp                       | 4 ++++
+ gui/theme/common/landscape.xml | 1 +
+ gui/theme/common/portrait.xml  | 1 +
+ gui/theme/common/watch.xml     | 1 +
+ prebuilt/Android.mk            | 2 ++
+ 6 files changed, 12 insertions(+)
+
+diff --git a/Android.mk b/Android.mk
+index aedb3f9a..38ec4f58 100755
+--- a/Android.mk
++++ b/Android.mk
+@@ -442,6 +442,9 @@ ifneq ($(TW_INCLUDE_LIBRESETPROP),)
+         LOCAL_CFLAGS += -DTW_INCLUDE_LIBRESETPROP
+     endif
+ endif
++ifeq ($(TW_EXCLUDE_TWRPAPP),true)
++    LOCAL_CFLAGS += -DTW_EXCLUDE_TWRPAPP
++endif
+ ifeq ($(TW_EXCLUDE_NANO), true)
+     LOCAL_CFLAGS += -DTW_EXCLUDE_NANO
+ endif
+diff --git a/data.cpp b/data.cpp
+index bc31a650..d8b83781 100755
+--- a/data.cpp
++++ b/data.cpp
+@@ -915,11 +915,15 @@ void DataManager::SetDefaultValues()
+ 	mConst.SetValue("tw_app_installed_in_system", "0");
+ #else
+ 	mConst.SetValue("tw_oem_build", "0");
++#ifdef TW_EXCLUDE_TWRPAPP
++	mConst.SetValue("tw_app_prompt", "-1");
++#else
+ 	mPersist.SetValue("tw_app_prompt", "1");
+ 	mPersist.SetValue("tw_app_install_system", "1");
+ 	mData.SetValue("tw_app_install_status", "0"); // 0 = no status, 1 = not installed, 2 = already installed
+ 	mData.SetValue("tw_app_installed_in_system", "0");
+ #endif
++#endif
+ #ifndef TW_EXCLUDE_NANO
+ 	mConst.SetValue("tw_include_nano", "1");
+ #else
+diff --git a/gui/theme/common/landscape.xml b/gui/theme/common/landscape.xml
+index a3bbfa78..a26c4e39 100755
+--- a/gui/theme/common/landscape.xml
++++ b/gui/theme/common/landscape.xml
+@@ -3614,6 +3614,7 @@
+ 					</actions>
+ 				</listitem>
+ 				<listitem name="{@reboot_install_app_hdr=Install TWRP App}">
++					<condition var1="tw_app_prompt" op="!=" var2="-1"/>
+ 					<condition var1="tw_app_install_status" var2="1"/>
+ 					<actions>
+ 						<action function="set">tw_back=advanced</action>
+diff --git a/gui/theme/common/portrait.xml b/gui/theme/common/portrait.xml
+index 1b48fb98..671bf339 100755
+--- a/gui/theme/common/portrait.xml
++++ b/gui/theme/common/portrait.xml
+@@ -3736,6 +3736,7 @@
+ 					</actions>
+ 				</listitem>
+ 				<listitem name="{@reboot_install_app_hdr=Install TWRP App}">
++					<condition var1="tw_app_prompt" op="!=" var2="-1"/>
+ 					<condition var1="tw_app_install_status" var2="1"/>
+ 					<actions>
+ 						<action function="set">tw_back=advanced</action>
+diff --git a/gui/theme/common/watch.xml b/gui/theme/common/watch.xml
+index 36843561..b4f36a56 100755
+--- a/gui/theme/common/watch.xml
++++ b/gui/theme/common/watch.xml
+@@ -4371,6 +4371,7 @@
+ 					</actions>
+ 				</listitem>
+ 				<listitem name="{@reboot_install_app_hdr=Install TWRP App}">
++					<condition var1="tw_app_prompt" op="!=" var2="-1"/>
+ 					<condition var1="tw_app_install_status" var2="1"/>
+ 					<actions>
+ 						<action function="set">tw_back=advanced2</action>
+diff --git a/prebuilt/Android.mk b/prebuilt/Android.mk
+index 17636ae6..6c1060aa 100644
+--- a/prebuilt/Android.mk
++++ b/prebuilt/Android.mk
+@@ -569,6 +569,7 @@ ifeq ($(TW_USE_TOOLBOX), true)
+     include $(BUILD_PREBUILT)
+ endif
+ 
++ifneq ($(TW_EXCLUDE_TWRPAPP),true)
+ #TWRP App "placeholder"
+ include $(CLEAR_VARS)
+ LOCAL_MODULE := me.twrp.twrpapp.apk
+@@ -577,6 +578,7 @@ LOCAL_MODULE_CLASS := RECOVERY_EXECUTABLES
+ LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/sbin
+ LOCAL_SRC_FILES := $(LOCAL_MODULE)
+ include $(BUILD_PREBUILT)
++endif
+ 
+ #TWRP App permissions for Android 9+
+ include $(CLEAR_VARS)
+-- 
+2.17.1
+
