@@ -75,4 +75,14 @@ TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_LANGUAGE := ru
 TW_DEVICE_VERSION := by bbor74 
 
+# TWRP_INCLUDE_LOGCAT := true
+# TARGET_USES_LOGD := true
 
+# SELinux
+BOARD_SEPOLICY_DIRS += device/explay/fog2/sepolicy
+BOARD_SEPOLICY_UNION += \
+    init.te \
+    kernel.te \
+    logd.te \
+    recovery.te \
+    rootfs.te
