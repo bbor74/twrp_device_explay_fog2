@@ -18,7 +18,6 @@ LOCAL_PATH := device/explay/fog2
 USE_CAMERA_STUB := false
 
 # Target Architecture
-TARGET_ARCH := arm
 TARGET_NO_BOOTLOADER := true
 TARGET_BOARD_PLATFORM := polaris
 TARGET_CPU_ABI := armeabi-v7a
