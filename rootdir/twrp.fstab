@@ -7,6 +7,7 @@
 /misc			emmc		/dev/block/nande 	flags=display="Misc"
 /recovery		emmc		/dev/block/nandf 	flags=backup=1
 /cache 			ext4		/dev/block/nandg 	flags=backup=1;wipeingui;wipeduringfactoryreset
+/databk			ext4		/dev/block/nandh 	flags=backup=1
 /data			ext4		/dev/block/nandi 	flags=backup=1;wipeingui;wipeduringfactoryreset
 /external_sd	vfat		/dev/block/mmcblk0p1	/dev/block/mmcblk0 flags=storage;removable;fsflags=utf8
 /usb-otg auto	/dev/block/sda1		/dev/block/sda flags=display="USB-OTG";storage;removable;fsflags=utf8
