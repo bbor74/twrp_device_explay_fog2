@@ -1,4 +1,5 @@
 #============= recovery ==============
+allow recovery adb_keys_file:dir { getattr open read };
 allow recovery apk_data_file:dir { add_name remove_name relabelto rmdir open read write };
 allow recovery apk_data_file:file { create relabelfrom relabelto setattr write unlink };
 allow recovery apk_private_data_file:dir { getattr relabelto rmdir open read };
@@ -24,12 +25,18 @@ allow recovery drm_data_file:dir { getattr add_name create relabelfrom relabelto
 # allow recovery kernel:security { load_policy };
 allow recovery kernel:security { read_policy };
 allow recovery kernel:system module_request;
+allow recovery keychain_data_file:dir { getattr open read };
 allow recovery keystore_data_file:dir { getattr create relabelto open read search setattr };
 # allow recovery keystore_data_file:dir { write relabelfrom add_name remove_name rmdir };
 allow recovery keystore_data_file:file getattr;
 # allow recovery keystore_data_file:file { read write create setattr unlink open };
 allow recovery logdr_socket:sock_file write;
 allow recovery logd:unix_stream_socket connectto;
+allow recovery media_data_file:dir { getattr open read };
+allow recovery media_rw_data_file:dir { getattr open read };
+allow recovery media_rw_data_file:file getattr;
+allow recovery misc_user_data_file:dir { getattr open read };
+allow recovery net_data_file:dir { getattr open read };
 allow recovery properties_device:file rename;
 allow recovery radio_data_file:dir { getattr add_name create relabelfrom relabelto remove_name rmdir setattr open read write };
 allow recovery radio_data_file:file { getattr create relabelfrom relabelto setattr unlink open read write };
@@ -41,6 +48,7 @@ allow recovery rootfs:file { relabelfrom create setattr write unlink };
 allow recovery rootfs:lnk_file { create unlink };
 allow recovery self:netlink_kobject_uevent_socket { bind create read };
 allow recovery selinuxfs:file write;
+allow recovery shared_relro_file:dir { getattr open read };
 allow recovery shell_data_file:dir { getattr add_name remove_name rmdir open read write };
 allow recovery shell_data_file:file { getattr open read unlink };
 allow recovery shell_data_file:lnk_file { create relabelfrom setattr };
@@ -58,4 +66,6 @@ allow recovery vfat:file { create getattr open read setattr write unlink };
 allow recovery vpn_data_file:dir { getattr rmdir open read };
 allow recovery wifi_data_file:dir { getattr remove_name rmdir open read write };
 allow recovery wifi_data_file:file { getattr open read unlink };
+allow recovery wpa_socket:dir { getattr open read };
 allow recovery wpa_socket:sock_file { getattr unlink };
+
