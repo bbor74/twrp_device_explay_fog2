@@ -72,7 +72,7 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 TW_BRIGHTNESS_PATH := /sys/class/disp/disp/attr/lcd_bl
 TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_LANGUAGE := ru
-TW_DEVICE_VERSION := by bbor74 
+TW_DEVICE_VERSION := by bbor74 (nk)
 
 # TWRP_INCLUDE_LOGCAT := true
 # TARGET_USES_LOGD := true

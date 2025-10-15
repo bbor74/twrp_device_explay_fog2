@@ -15,13 +15,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/disp.ko:root/disp.ko \
     $(LOCAL_PATH)/rootdir/fstab.sun8i:root/fstab.sun8i \
     $(LOCAL_PATH)/rootdir/gslX680.ko:root/gslX680.ko \
-    $(LOCAL_PATH)/rootdir/gt9xxf_ts.ko:root/gt9xxf_ts.ko \
-    $(LOCAL_PATH)/rootdir/inet_ctp.ko:root/inet_ctp.ko \
-    $(LOCAL_PATH)/rootdir/ft5x_ts.ko:root/ft5x_ts.ko \
-    $(LOCAL_PATH)/rootdir/ft5402.ko:root/ft5402.ko \
+    $(LOCAL_PATH)/rootdir/gslX680new.ko:root/gslX680new.ko \
     $(LOCAL_PATH)/rootdir/init.recovery.sun8i.rc:root/init.recovery.sun8i.rc \
     $(LOCAL_PATH)/rootdir/lcd.ko:root/lcd.ko \
-    $(LOCAL_PATH)/rootdir/nand.ko:root/nand.ko \
     $(LOCAL_PATH)/rootdir/sunxi-keyboard.ko:root/sunxi-keyboard.ko \
     $(LOCAL_PATH)/rootdir/ueventd.sun8i.rc:root/ueventd.sun8i.rc
 
