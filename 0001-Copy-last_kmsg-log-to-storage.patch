@@ -1,0 +1,221 @@
+From 20c022df70cbb6458040ff640850aa7e434141ff Mon Sep 17 00:00:00 2001
+From: Boris Belyaev <bbor1974@gmail.com>
+Date: Mon, 7 Oct 2024 11:03:06 +0400
+Subject: [PATCH] Copy last_kmsg log to storage
+
+Change-Id: I77825114adbd650a3bf40ebb2c6db76db5d47813
+---
+ gui/theme/common/languages/cz.xml    | 1 +
+ gui/theme/common/languages/de.xml    | 1 +
+ gui/theme/common/languages/el.xml    | 1 +
+ gui/theme/common/languages/en.xml    | 1 +
+ gui/theme/common/languages/es.xml    | 1 +
+ gui/theme/common/languages/hu.xml    | 1 +
+ gui/theme/common/languages/id.xml    | 1 +
+ gui/theme/common/languages/it.xml    | 1 +
+ gui/theme/common/languages/nl.xml    | 1 +
+ gui/theme/common/languages/pl.xml    | 1 +
+ gui/theme/common/languages/pt_PT.xml | 1 +
+ gui/theme/common/languages/ru.xml    | 1 +
+ gui/theme/common/languages/tr.xml    | 1 +
+ gui/theme/common/languages/uk.xml    | 1 +
+ twrp-functions.cpp                   | 9 +++++++++
+ 15 files changed, 23 insertions(+)
+
+diff --git a/gui/theme/common/languages/cz.xml b/gui/theme/common/languages/cz.xml
+index 5194704c..45bacd06 100644
+--- a/gui/theme/common/languages/cz.xml
++++ b/gui/theme/common/languages/cz.xml
+@@ -741,6 +741,7 @@
+ 		<string name="twrp_adbbu_option">--nutné pro povolení TWRP ADB zálohování</string>
+ 		<string name="partition_not_found">cesta: {1} nebyl nalezen v seznamu oddílů</string>
+ 		<string name="copy_kernel_log">Log kernelu zkopírován do {1}</string>
++		<string name="copy_last_kmsg_log">Log last_kmsg zkopírován do {1}</string>
+ 		<string name="copy_logcat">Zkopírován logcat do {1}</string>
+ 		<string name="include_kernel_log">Zahrnout Log kernelu</string>
+ 		<string name="include_logcat">Zahrnout Logcat</string>
+diff --git a/gui/theme/common/languages/de.xml b/gui/theme/common/languages/de.xml
+index 92cf03c7..3ed9877d 100644
+--- a/gui/theme/common/languages/de.xml
++++ b/gui/theme/common/languages/de.xml
+@@ -726,6 +726,7 @@
+ 		<string name="twrp_adbbu_option">--twrp option wird für ADB Backup benötigt</string>
+ 		<string name="partition_not_found">Pfad: {1} wurde nicht in Partitionsliste gefunden</string>
+ 		<string name="copy_kernel_log">Kernel-Log wurde nach {1} kopiert</string>
++		<string name="copy_last_kmsg_log">Last_kmsg-Log wurde nach {1} kopiert</string>
+ 		<string name="include_kernel_log">Zusätzlich Kernel-Log kopieren</string>
+ 		<string name="sha2_chk">SHA2 als Hash-Algorithmus verwenden</string>
+ 		<string name="unable_set_boot_slot">Fehler während Wechsel zu Slot {1}</string>
+diff --git a/gui/theme/common/languages/el.xml b/gui/theme/common/languages/el.xml
+index 688299a9..c46b1289 100644
+--- a/gui/theme/common/languages/el.xml
++++ b/gui/theme/common/languages/el.xml
+@@ -663,6 +663,7 @@
+         <string name="twrp_adbbu_option">--η επιλογή twrp απαιτείτε για την ενεργοποίηση των αντ. ασφ. twrp adb</string>
+         <string name="partition_not_found">διαδρομή: {1} δεν βρέθηκε στην λίστα τομέων</string>
+         <string name="copy_kernel_log">Το log του kernel αντιγράφηκε στο {1}</string>
++        <string name="copy_last_kmsg_log">Το log του last_kmsg αντιγράφηκε στο {1}</string>
+         <string name="include_kernel_log">Εισαγωγή Kernel Log</string>
+     </resources>
+ </language>
+diff --git a/gui/theme/common/languages/en.xml b/gui/theme/common/languages/en.xml
+index a85fa533..ae3e6317 100755
+--- a/gui/theme/common/languages/en.xml
++++ b/gui/theme/common/languages/en.xml
+@@ -741,6 +741,7 @@
+ 		<string name="twrp_adbbu_option">--twrp option is required to enable twrp adb backup</string>
+ 		<string name="partition_not_found">path: {1} not found in partititon list</string>
+ 		<string name="copy_kernel_log">Copied kernel log to {1}</string>
++		<string name="copy_last_kmsg_log">Copied last_kmsg log to {1}</string>
+ 		<string name="copy_logcat">Copied logcat to {1}</string>
+ 		<string name="include_kernel_log">Include Kernel Log</string>
+ 		<string name="include_logcat">Include Logcat</string>
+diff --git a/gui/theme/common/languages/es.xml b/gui/theme/common/languages/es.xml
+index 8ee76329..d022a3d7 100644
+--- a/gui/theme/common/languages/es.xml
++++ b/gui/theme/common/languages/es.xml
+@@ -699,6 +699,7 @@
+ 		<string name="twrp_adbbu_option">La Opción --twrp es Necesaria para Habilitar los Backups por ADB</string>
+ 		<string name="partition_not_found">Directorio: {1} no encontrada en la lista de particiones</string>
+ 		<string name="copy_kernel_log">Se ha copiado el Log de Kernel a {1}</string>
++		<string name="copy_last_kmsg_log">Se ha copiado el Log de last_kmsg a {1}</string>
+ 		<string name="include_kernel_log">Incluye el Log de el Kernel</string>
+ 		<string name="sha2_chk">Usar SHA2 para hacer hash</string>
+ 		<string name="unable_set_boot_slot">Error al cambiar el Slot de Arranque del Cargador de Arranque a {1}</string>
+diff --git a/gui/theme/common/languages/hu.xml b/gui/theme/common/languages/hu.xml
+index 2030889e..9eeae8f6 100644
+--- a/gui/theme/common/languages/hu.xml
++++ b/gui/theme/common/languages/hu.xml
+@@ -683,6 +683,7 @@
+ 		<string name="twrp_adbbu_option">--twrp opció szükséges az ADB Backup-hoz </string>
+ 		<string name="partition_not_found">útvonal: {1} nem található a partíciós listában</string>
+ 		<string name="copy_kernel_log">Kernel log másolva: {1}</string>
++		<string name="copy_last_kmsg_log">Last_kmsg log másolva: {1}</string>
+ 		<string name="include_kernel_log">Emellett Kernel Log másolása</string>
+ 		<string name="unable_set_boot_slot">Hiba a boot slot váltása során erre: {1}</string>
+ 	</resources>
+diff --git a/gui/theme/common/languages/id.xml b/gui/theme/common/languages/id.xml
+index 5ace582c..de609b56 100755
+--- a/gui/theme/common/languages/id.xml
++++ b/gui/theme/common/languages/id.xml
+@@ -732,6 +732,7 @@
+ 		<string name="twrp_adbbu_option">--opsi twrp diperlukan untuk mengaktifkan twrp adb backup</string>
+ 		<string name="partition_not_found">lokasi: {1} tidak ditemukan dalam daftar partisi</string>
+ 		<string name="copy_kernel_log">Salin log kernel ke {1}</string>
++		<string name="copy_last_kmsg_log">Salin log last_kmsg ke {1}</string>
+ 		<string name="include_kernel_log">Termasuk log kernel</string>
+ 		<string name="sha2_chk">Gunakan SHA2 untuk mencirikan</string>
+ 		<string name="unable_set_boot_slot">Kesalahan mengubah boot bootloader ke {1}</string>
+diff --git a/gui/theme/common/languages/it.xml b/gui/theme/common/languages/it.xml
+index 3427710f..50e30832 100644
+--- a/gui/theme/common/languages/it.xml
++++ b/gui/theme/common/languages/it.xml
+@@ -683,6 +683,7 @@
+ 		<string name="twrp_adbbu_option">--twrp opzione richiesta per abilitare twrp adb backup</string>
+ 		<string name="partition_not_found">percorso: {1} non trovato nella lista delle partizioni</string>
+ 		<string name="copy_kernel_log">Log del kernel copiato in {1}</string>
++		<string name="copy_last_kmsg_log">Log del last_kmsg copiato in {1}</string>
+ 		<string name="include_kernel_log">Includi Log del Kernel</string>
+ 		<string name="unable_set_boot_slot">Errore nel cambio slot d'avvio del bootloader in {1}</string>
+ 	</resources>
+diff --git a/gui/theme/common/languages/nl.xml b/gui/theme/common/languages/nl.xml
+index 37e712a9..be08c317 100644
+--- a/gui/theme/common/languages/nl.xml
++++ b/gui/theme/common/languages/nl.xml
+@@ -726,6 +726,7 @@
+ 		<string name="twrp_adbbu_option">--twrp optie vereist voor inschakelen twrp adb-backup</string>
+ 		<string name="partition_not_found">pad: {1} niet gevonden in partitielijst</string>
+ 		<string name="copy_kernel_log">Kernellogbestand gekopieerd naar {1}</string>
++		<string name="copy_last_kmsg_log">Lastkmsglogbestand gekopieerd naar {1}</string>
+ 		<string name="include_kernel_log">Kernellog bijvoegen</string>
+ 		<string name="sha2_chk">SHA2 gebruiken voor hashen</string>
+ 		<string name="unable_set_boot_slot">Fout tijdens aanpassen opstartslot bootloader in {1}</string>
+diff --git a/gui/theme/common/languages/pl.xml b/gui/theme/common/languages/pl.xml
+index 469b0372..6a2d3b4a 100644
+--- a/gui/theme/common/languages/pl.xml
++++ b/gui/theme/common/languages/pl.xml
+@@ -742,6 +742,7 @@
+ 		<string name="twrp_adbbu_option">parametr --twrp jest wymagany, aby włączyć kopię zapasową adb twrp</string>
+ 		<string name="partition_not_found">ścieżka: {1} nieznaleziona na liście partycji</string>
+ 		<string name="copy_kernel_log">Skopiowano log kernela do {1}</string>
++		<string name="copy_last_kmsg_log">Skopiowano log last_kmsg do {1}</string>
+ 		<string name="copy_logcat">Skopiowano logcat do {1}</string>
+ 		<string name="include_kernel_log">Skopiuj log kernela</string>
+ 		<string name="include_logcat">Skopiuj logcat</string>
+diff --git a/gui/theme/common/languages/pt_PT.xml b/gui/theme/common/languages/pt_PT.xml
+index ee589eb0..a23fb1b5 100644
+--- a/gui/theme/common/languages/pt_PT.xml
++++ b/gui/theme/common/languages/pt_PT.xml
+@@ -716,6 +716,7 @@
+ 		<string name="twrp_adbbu_option">A opção --twrp é requerida para ativar o twrp adb backup</string>
+ 		<string name="partition_not_found">caminho: {1} não encontrado na lista de partições</string>
+ 		<string name="copy_kernel_log">Log do Kernel copiado para {1}</string>
++		<string name="copy_last_kmsg_log">Log do last_kmsg copiado para {1}</string>
+ 		<string name="include_kernel_log">Incluir log do Kernel</string>
+ 		<string name="sha2_chk">Usar SHA2 para fazer hash</string>
+ 		<string name="unable_set_boot_slot">Erro ao alterar o slot do bootloader para {1}</string>
+diff --git a/gui/theme/common/languages/ru.xml b/gui/theme/common/languages/ru.xml
+index 47f5faea..7a355624 100644
+--- a/gui/theme/common/languages/ru.xml
++++ b/gui/theme/common/languages/ru.xml
+@@ -741,6 +741,7 @@
+ 		<string name="twrp_adbbu_option">-- эта опция позволяет делать резервное копирование по ADB</string>
+ 		<string name="partition_not_found">путь: {1} отсутствует в списке разделов.</string>
+ 		<string name="copy_kernel_log">Kernel Log скопирован в {1}</string>
++		<string name="copy_last_kmsg_log">Last_kmsg Log скопирован в {1}</string>
+ 		<string name="copy_logcat">Logcat скопирован в {1}</string>
+ 		<string name="include_kernel_log">Добавить Kernel Log</string>
+ 		<string name="include_logcat">Добавить Logcat</string>
+diff --git a/gui/theme/common/languages/tr.xml b/gui/theme/common/languages/tr.xml
+index 15a1a31e..7b462799 100644
+--- a/gui/theme/common/languages/tr.xml
++++ b/gui/theme/common/languages/tr.xml
+@@ -715,6 +715,7 @@
+ 		<string name="twrp_adbbu_option">--twrp adb yedeklemeyi etkinleştirmek için twrp seçeneği gerekiyor</string>
+ 		<string name="partition_not_found">yol: {1} bölüm listesinde bulunamadı</string>
+ 		<string name="copy_kernel_log">Kernel kaydı şuraya kopyalandı: {1}</string>
++		<string name="copy_last_kmsg_log">Last_kmsg kaydı şuraya kopyalandı: {1}</string>
+ 		<string name="include_kernel_log">Kernel Kaydını Dahil Et</string>
+ 		<string name="sha2_chk">Hash için SHA2 kullan</string>
+ 		<string name="unable_set_boot_slot">Önyükleyici önyükleme yuvasını {1} olarak değiştiremiyor</string>
+diff --git a/gui/theme/common/languages/uk.xml b/gui/theme/common/languages/uk.xml
+index d48310bb..df616508 100644
+--- a/gui/theme/common/languages/uk.xml
++++ b/gui/theme/common/languages/uk.xml
+@@ -659,6 +659,7 @@
+ 		<string name="twrp_adbbu_option">--опція twrp потребує увімкнення adb копіювання</string>
+ 		<string name="partition_not_found">шлях: {1} не знайдено у списку розділів</string>
+ 		<string name="copy_kernel_log">Копіювання kernel log у {1}</string>
++		<string name="copy_last_kmsg_log">Копіювання last_kmsg log у {1}</string>
+ 		<string name="include_kernel_log">Увімкнути Kernel Log</string>
+ 	</resources>
+ </language>
+diff --git a/twrp-functions.cpp b/twrp-functions.cpp
+index ddccd3e5..4f108eef 100755
+--- a/twrp-functions.cpp
++++ b/twrp-functions.cpp
+@@ -1234,12 +1234,21 @@ unsigned long long TWFunc::IOCTL_Get_Block_Size(const char* block_device) {
+ void TWFunc::copy_kernel_log(string curr_storage) {
+ 	std::string dmesgDst = curr_storage + "/dmesg.log";
+ 	std::string dmesgCmd = "/sbin/dmesg";
++	std::string last_kmsgDst = curr_storage + "/last_kmsg.log";
++	std::string last_kmsgSrc = "/proc/last_kmsg";
+ 
+ 	std::string result;
+ 	Exec_Cmd(dmesgCmd, result, false);
+ 	write_to_file(dmesgDst, result);
+ 	gui_msg(Msg("copy_kernel_log=Copied kernel log to {1}")(dmesgDst));
+ 	tw_set_default_metadata(dmesgDst.c_str());
++
++	if (Path_Exists(last_kmsgSrc))
++	{
++		copy_file("/proc/last_kmsg", last_kmsgDst.c_str(), 0755);
++		tw_set_default_metadata(last_kmsgDst.c_str());
++		gui_msg(Msg("copy_last_kmsg_log=Copied last_kmsg log to {1}")(last_kmsgDst));
++	}
+ }
+ 
+ void TWFunc::copy_logcat(string curr_storage) {
+-- 
+2.17.1
+
