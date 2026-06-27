@@ -34,9 +34,10 @@ TARGET_GLOBAL_CFLAGS += -mtune=cortex-a7 -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a7 -mfpu=neon -mfloat-abi=softfp
 
 # Kernel
-BOARD_KERNEL_CMDLINE := console=ttyS0,115200 rw init=/init loglevel=4 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := console=ttyS0,115200 rw init=/init loglevel=4 androidboot.hardware=sun8i androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x40000000
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel
+KERNEL_HAS_FINIT_MODULE := false
 
 # Memory
 BOARD_FLASH_BLOCK_SIZE := 4096
@@ -79,9 +80,4 @@ TW_DEVICE_VERSION := by bbor74 (nk)
 
 # SELinux
 BOARD_SEPOLICY_DIRS += device/explay/fog2/sepolicy
-BOARD_SEPOLICY_UNION += \
-    init.te \
-    kernel.te \
-    logd.te \
-    recovery.te \
-    rootfs.te
+
