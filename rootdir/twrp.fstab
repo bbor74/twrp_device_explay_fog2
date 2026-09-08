@@ -1,12 +1,12 @@
 # mount point	fstype		device					device2
 
-/bootloader 	vfat  		/dev/block/nanda 	flags=display="Bootloader";backup=1
-/env      		emmc    	/dev/block/nandb 	flags=display="U-Boot env";backup=1
-/boot			emmc		/dev/block/nandc 	flags=backup=1
-/system			ext4		/dev/block/nandd 	flags=backup=1;formattable
-/misc			emmc		/dev/block/nande 	flags=display="Misc"
-/recovery		emmc		/dev/block/nandf 	flags=backup=1
-/cache 			ext4		/dev/block/nandg 	flags=backup=1;wipeingui;wipeduringfactoryreset;formattable
-/data			ext4		/dev/block/nandi 	flags=backup=1;wipeingui;wipeduringfactoryreset;formattable;encryptable=/dev/block/nandh
+/bootloader 	vfat  		/dev/block/by-name/bootloader 	flags=display="Bootloader";backup=1
+/env      		emmc    	/dev/block/by-name/env 	flags=display="U-Boot env";backup=1
+/boot			emmc		/dev/block/by-name/boot 	flags=backup=1
+/system			ext4		/dev/block/by-name/system 	flags=backup=1;formattable
+/misc			emmc		/dev/block/by-name/misc 	flags=display="Misc"
+/recovery		emmc		/dev/block/by-name/recovery 	flags=backup=1
+/cache 			ext4		/dev/block/by-name/cache 	flags=backup=1;wipeingui;wipeduringfactoryreset;formattable
+/data			ext4		/dev/block/by-name/UDISK 	flags=backup=1;wipeingui;wipeduringfactoryreset;formattable;encryptable=/dev/block/by-name/databk
 /external_sd	vfat		/dev/block/mmcblk0p1	/dev/block/mmcblk0 flags=storage;removable;fsflags=utf8
 /usb-otg auto	/dev/block/sda1		/dev/block/sda flags=display="USB-OTG";storage;removable;fsflags=utf8
