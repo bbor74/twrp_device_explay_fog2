@@ -22,5 +22,5 @@ index 1a5276b..5ba7eec 100644
          { "ro.boot.baseband",   "ro.baseband",   "unknown", },
          { "ro.boot.bootloader", "ro.bootloader", "unknown", },
 -- 
-2.17.1
+2.43.0
 
