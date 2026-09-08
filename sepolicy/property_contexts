@@ -1,0 +1,2 @@
+twrp.crash_counter       u:object_r:twrp_prop:s0
+ro.twrp.boot       u:object_r:twrp_prop:s0

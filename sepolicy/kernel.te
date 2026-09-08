@@ -1,3 +1,7 @@
 #============= kernel ==============
 allow kernel device:blk_file { getattr create setattr unlink };
 allow kernel self:capability mknod;
+
+#============= kernel ==============
+allow kernel device:chr_file { create setattr };
+allow kernel device:dir { add_name create write };
