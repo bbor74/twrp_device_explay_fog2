@@ -1,7 +1,7 @@
 From d976485b2a00eb0fbb1e57668cdad320b8b5aed0 Mon Sep 17 00:00:00 2001
 From: Boris Belyaev <bbor1974@gmail.com>
 Date: Tue, 28 Jan 2025 15:46:04 +0400
-Subject: [PATCH] Set default serialno
+Subject: [PATCH 1/2] Set default serialno
 
 Change-Id: I32729fb9f027a60c2720d12b37d25c279d9e401e
 ---
